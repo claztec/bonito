@@ -4,6 +4,8 @@ from urllib2 import HTTPError
 
 from bs4 import BeautifulSoup
 
+import re
+
 def getTitle(url, keyword):
     try:
         params = urlencode({'searchKeyword':keyword, 'searchKey':2, 'curPage':1, 'searchLibrary':'MB'})
@@ -20,6 +22,15 @@ def getTitle(url, keyword):
         list = []
         for tag in tags:
             print ">>>>>> %s" % (tag)
+            s = tag['onclick']
+
+            p = re.compile('javascript:viewSearchDetail(\(\d+\))')
+            m = p.search(s)
+            number = m.groups(0)[0]
+            print number
+            n = float(number.strip())
+            print n
+
             list.append(tag.get_text())
 
     except AttributeError as e:
