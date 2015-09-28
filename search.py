@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import json
 from urllib import urlopen, urlencode
 from urllib2 import HTTPError
 
@@ -6,7 +7,6 @@ from bs4 import BeautifulSoup
 from model.Book import Book
 
 import re
-
 
 
 def _search_library(keyword):
@@ -96,14 +96,21 @@ def get_books(keyword):
 if __name__ == "__main__":
     url = 'http://search.snlib.net/search/resultSearchList'
     # url = 'http://search.snlib.net/search/viewSearchDetail'
-    keyword = '잉여의 미학'
+    keyword = '스프링'
     # %EC%8A%A4%ED%94%84%EB%A7%81
 
-    books = get_books(keyword)
+    find_books = get_books(keyword)
 
-    for book in books:
+    result = {}
+    books = []
+    for book in find_books:
         print book.name
         print book.book_id
         print book.booking
         print book.call_number
         print book.image
+        print(json.dumps(book.to_json(), ensure_ascii=False))
+        books.append(book.to_json())
+
+    result['books'] = books
+    print(json.dumps(result, ensure_ascii=False))
