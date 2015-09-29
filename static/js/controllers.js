@@ -26,3 +26,9 @@ libraryControllers.controller('LibraryListCtrl', ['$scope', 'Library', function(
     $scope.libraries = libraries;
 }]);
 
+libraryControllers.controller('LibraryDetailCtrl', ['$scope', '$routeParams', 'Library', function($scope, $routeParams, Library) {
+    var library = Library.get({libraryId: $routeParams.libraryId}, function(data) {
+        console.log(data)
+    });
+    $scope.library = library;
+}]);

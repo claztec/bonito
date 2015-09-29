@@ -9,5 +9,5 @@ var libraryServices = angular.module('libraryServices', ['ngResource']);
 //}]);
 
 libraryServices.factory('Library', function($resource) {
-   return $resource('/libraries/:libraryId.json');
+   return $resource('/api/libraries/:libraryId');
 });

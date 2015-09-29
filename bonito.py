@@ -13,13 +13,11 @@ app = Flask(__name__)
 def hello_world():
     return render_template('index.html')
 
-# @app.route('/phones/phones.json')
-# def phones():
-#     return render_template('phones.json')
 
 
-@app.route('/libraries.json')
-def libraries():
+
+@app.route('/api/libraries')
+def get_libraries():
     library = Library()
     library.library_id = 1
     library.name = '분당도서관'
@@ -45,6 +43,21 @@ def libraries():
     # except Exception, e:
     #     print e
     #     print result.to_json()
+
+    response = make_response(result_str)
+    response.headers['Content-Type'] = 'application/json;charset=UTF-8'
+    response.headers['Access-Control-Allow-Credentials'] = 'true'
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    return response
+
+@app.route('/api/libraries/<library_id>')
+def get_library(library_id):
+    library = Library()
+    library.library_id = 1
+    library.name = '분당도서관'
+    library.website = 'http://bd.snlib.net'
+    library.image = 'http://tong.visitkorea.or.kr/cms/resource/31/1785931_image2_1.jpg'
+    result_str = json.dumps(library.to_json(), ensure_ascii=False)
 
     response = make_response(result_str)
     response.headers['Content-Type'] = 'application/json;charset=UTF-8'

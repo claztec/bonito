@@ -8,9 +8,17 @@ var phonecatApp = angular.module('libraryApp', [
 phonecatApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
+            when('/', {
+                templateUrl: 'static/partials/library-list.html',
+                controller: 'LibraryListCtrl'
+            }).
             when('/libraries', {
                 templateUrl: 'static/partials/library-list.html',
                 controller: 'LibraryListCtrl'
+            }).
+            when('/libraries/:libraryId', {
+                templateUrl: 'static/partials/library-detail.html',
+                controller: 'LibraryDetailCtrl'
             }).
 //            when('/phones', {
 //                templateUrl: 'static/partials/phone-list.html',
