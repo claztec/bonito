@@ -31,4 +31,27 @@ libraryControllers.controller('LibraryDetailCtrl', ['$scope', '$routeParams', 'L
         console.log(data)
     });
     $scope.library = library;
+
+    $scope.search = function() {
+        alert("llll");
+    };
+}]);
+
+var bookControllers = angular.module('bookControllers', []);
+
+bookControllers.controller('BookSearchCtrl', ['$scope', '$http', function($scope, $http) {
+    $scope.search = function() {
+        $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+        $http({
+            method: 'POST',
+            url: '/api/books/search',
+            data: $.param({
+                'query': $scope.query
+            }),
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(data) {
+            $scope.books = data;
+            console.log(data);
+        });
+    };
 }]);

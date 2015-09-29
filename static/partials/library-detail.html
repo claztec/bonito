@@ -3,15 +3,29 @@
     <img ng-src="{{library.image}}" class="thumbnail">
     <p>website: {{library.website}}</p>
 </div>
-<form class="form-inline">
-    <div class="form-group">
-        <label class="sr-only" for="search">Search Book</label>
-            <div class="input-group">
-                <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></div>
-                <input type="text" class="form-control" id="search" placeholder="찾으시는 책 이름을 입력하세요.">
-                <span class="input-group-btn">
-                    <button type="submit" class="btn btn-primary">검색</button>
-                </span>
+<div ng-controller="BookSearchCtrl">
+    <form class="form-inline" ng-submit="search()" >
+        <div class="form-group">
+            <label class="sr-only" for="search">Search Book</label>
+                <div class="input-group">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></div>
+                    <input type="text" class="form-control" id="search" placeholder="찾으시는 책 이름을 입력하세요." ng-model="query">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-primary" >검색</button>
+                    </span>
+            </div>
+        </div>
+    </form>
+    <div class="row search_result">
+        <div class="col-md-12">
+            <div ng-repeat="book in books" class="thumbnail">
+                <img ng-src="{{book.image}}"></a>
+                <p>
+                    {{book.name}} </br>
+                    {{book.callnumber}} </br>
+                    {{book.booking}} </br>
+                </p>
+            </div>
         </div>
     </div>
-</form>
+</div>

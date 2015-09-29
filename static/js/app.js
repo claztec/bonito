@@ -2,7 +2,8 @@ var phonecatApp = angular.module('libraryApp', [
     'ngRoute',
     'libraryControllers',
     'libraryFilters',
-    'libraryServices'
+    'libraryServices',
+    'bookControllers',
 ]);
 
 phonecatApp.config(['$routeProvider',
