@@ -1,9 +1,13 @@
-var phonecatServices = angular.module('phonecatServices', ['ngResource']);
+var libraryServices = angular.module('libraryServices', ['ngResource']);
 
 
-phonecatServices.factory('Phone', ['$resource',
-    function($resource) {
-        return $resource('static/phones/:phoneId.json', {}, {
-           query: {method:'GET', params:{phoneId:'phones'}, isArray:true}
-        });
-}]);
+//libraryServices.factory('Library', ['$resource',
+//    function($resource) {
+//        return $resource('/libraries/:libraryId.json', {}, {
+//           query: {method:'GET', isArray:true}
+//        });
+//}]);
+
+libraryServices.factory('Library', function($resource) {
+   return $resource('/libraries/:libraryId.json');
+});

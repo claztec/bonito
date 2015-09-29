@@ -1,0 +1,22 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            Search: <input ng-model="query">
+            Sort by:
+            <select ng-model="orderProp">
+                <option value="name">Alphabetical</option>
+                <option value="age">Newest</option>
+                <option value="-age">Oldest</option>
+            </select>
+        </div>
+        <div class="col-md-10">
+            <ul>
+                <li ng-repeat="library in libraries | filter:query | orderBy:orderProp" class="thumbnail">
+                    <a href="#/libraries/{{library.id}}" class="thumb"><img ng-src="{{library.image}}"></a>
+                    <span>{{library.name}}</span>
+                    <p>{{library.website}}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

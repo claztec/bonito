@@ -1,23 +1,27 @@
-var phonecatApp = angular.module('phonecatApp', [
+var phonecatApp = angular.module('libraryApp', [
     'ngRoute',
-    'phonecatControllers',
-    'phonecatFilters',
-    'phonecatServices'
+    'libraryControllers',
+    'libraryFilters',
+    'libraryServices'
 ]);
 
 phonecatApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
-            when('/phones', {
-                templateUrl: 'static/partials/phone-list.html',
-                controller: 'PhoneListCtrl'
+            when('/libraries', {
+                templateUrl: 'static/partials/library-list.html',
+                controller: 'LibraryListCtrl'
             }).
-            when('/phones/:phoneId', {
-                templateUrl: 'static/partials/phone-detail.html',
-                controller: 'PhoneDetailCtrl'
-            }).
+//            when('/phones', {
+//                templateUrl: 'static/partials/phone-list.html',
+//                controller: 'PhoneListCtrl'
+//            }).
+//            when('/phones/:phoneId', {
+//                templateUrl: 'static/partials/phone-detail.html',
+//                controller: 'PhoneDetailCtrl'
+//            }).
             otherwise({
-                redirectTo: '/phones'
+                redirectTo: '/libraries'
             });
     }
 ]);

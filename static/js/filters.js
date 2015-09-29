@@ -1,6 +1,6 @@
-var phonecatFilters = angular.module('phonecatFilters',[]);
+var libraryFilters = angular.module('libraryFilters',[]);
 
-phonecatFilters.filter('checkmark', function() {
+libraryFilters.filter('checkmark', function() {
     return function(input) {
         return input ? '\u2713' : '\u2718';
     };
