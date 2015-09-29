@@ -2,8 +2,9 @@
 
 import json
 import sys
-from flask import Flask, render_template, jsonify, make_response
+from flask import Flask, render_template, jsonify, make_response, request
 from model.Library import Library
+from search import get_books
 
 
 app = Flask(__name__)
@@ -64,6 +65,40 @@ def get_library(library_id):
     response.headers['Access-Control-Allow-Credentials'] = 'true'
     response.headers['Access-Control-Allow-Origin'] = '*'
     return response
+
+
+# http://ash84.net/2015/07/16/flask-euckr/
+@app.route('/api/books/search', methods=['POST', 'GET'])
+def search_books():
+    if request.method == 'POST':
+        form_data = decode_raw_data(request.get_data())
+        query = form_data['query']
+        find_books = get_books(query)
+
+        books = []
+        for book in find_books:
+            books.append(book.to_json())
+
+    else:
+        books = ''
+
+    result_str = json.dumps(books, ensure_ascii=False)
+    response = make_response(result_str)
+    response.headers['Content-Type'] = 'application/json;charset=UTF-8'
+    response.headers['Access-Control-Allow-Credentials'] = 'true'
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    return response
+
+def decode_raw_data(raw):
+    try:
+        data = dict()
+        for r in raw.split('&'):
+            c = r.split('=')
+            data[c[0]] = c[1]
+        return data
+    except Exception as e:
+        # TODO : Exception logging
+        return None
 
 if __name__ == '__main__':
     print sys.path
