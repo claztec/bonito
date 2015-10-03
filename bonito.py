@@ -102,4 +102,4 @@ def decode_raw_data(raw):
 
 if __name__ == '__main__':
     print sys.path
-    app.run(host='192.168.219.188')
+    app.run(host='192.168.219.117')

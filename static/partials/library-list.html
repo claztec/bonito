@@ -1,8 +1,11 @@
-<div class="row">
-    <div class="col-md-12">
-        <div ng-repeat="library in libraries | filter:query | orderBy:orderProp" class="thumbnail">
-            <a href="#/libraries/{{library.id}}" class="thumb"><img ng-src="{{library.image}}"></a>
-            <span class="strong">{{library.name}}</span>
-        </div>
-    </div>
-</div>
+<header class="masthead" ng-repeat="library in libraries | filter:query | orderBy:orderProp">
+    <a href="#/libraries/{{library.id}}">
+        <img ng-src="{{library.image}}">
+    </a>
+    <span>
+        {{library.name}}
+    </span>
+</header>
+<article>
+
+</article>

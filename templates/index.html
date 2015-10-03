@@ -4,8 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>도서관에 있나 없나</title>
-    <link rel="stylesheet" href="static/libs/bootstrap/dist/css/bootstrap.css">
+{#    <link rel="stylesheet" href="static/libs/bootstrap/dist/css/bootstrap.css">#}
     <link rel="stylesheet" href="static/css/app.css">
+    <link rel="stylesheet" href="static/css/reset.css">
     <script src="static/libs/angular/angular.js"></script>
     <script src="static/libs/angular-route/angular-route.js"></script>
     <script src="static/libs/angular-resource/angular-resource.js"></script>
@@ -14,20 +15,23 @@
     <script src="static/js/controllers.js"></script>
     <script src="static/js/filters.js"></script>
     <script src="static/js/service.js"></script>
+
 </head>
 <body>
-    <div class="container-fluid">
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="http://192.168.219.188:5000/#/libraries">
-                    <img alt="Brand" src="http://icons.iconarchive.com/icons/rade8/minium-2/32/Sidebar-Library-icon.png">
-                        도서관에 있나 없나
-                    </a>
-                </div>
-            </div>
-        </nav>
-        <div ng-view></div>
-    </div>
+    <div class="container">
+        <header class="main">
+            <h1 id="logo">도서관에 있나 없나</h1>
+            <a href="/#/libraies">도서관에 있나 없나</a>
+        </header>
+        <aside class="main">
+            <nav>
+                <a href="">Best Seller</a>
+                <a href="">Find Book</a>
+            </nav>
+        </aside>
+        <section class="main">
+            <div ng-view class="main"></div>
+        </section>
+    <div>
 </body>
 </html>
